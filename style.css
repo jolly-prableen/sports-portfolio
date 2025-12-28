@@ -319,8 +319,22 @@ body.dark .timeline-extra p {
 .about-text h2 {
   font-size: 42px;
   margin-bottom: 20px;
+  position: relative;
+}
+.about-text h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 60px;
+  height: 4px;
+  background: #000;
 }
 
+/* Dark mode */
+body.dark .about-text h2::after {
+  background: #fff;
+}
 .about-text p {
   line-height: 1.8;
   color: #555;

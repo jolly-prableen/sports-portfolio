@@ -212,6 +212,47 @@ function getRandomQuote() {
   return list[Math.floor(Math.random() * list.length)];
 }
 
+/// =======================
+// QUOTE — TYPE ONLY AFTER USER SCROLLS INTO VIEW
+// =======================
+document.addEventListener("DOMContentLoaded", () => {
+  const quoteSection = document.querySelector(".quote");
+  if (!quoteSection) return;
+
+  let hasTyped = false;
+  let userHasScrolled = false;
+
+  // detect real user scroll
+  window.addEventListener("scroll", () => {
+    userHasScrolled = true;
+  }, { once: true });
+
+  const quoteObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        // 🚨 STRICT CONDITIONS
+        if (
+          entry.isIntersecting &&
+          userHasScrolled &&   // 🔑 must scroll first
+          !hasTyped
+        ) {
+          hasTyped = true;
+          typeQuote(getRandomQuote());
+        }
+
+        // reset when leaving viewport
+        if (!entry.isIntersecting) {
+          hasTyped = false;
+        }
+      });
+    },
+    {
+      threshold: 0.65 // only when clearly inside view
+    }
+  );
+
+  quoteObserver.observe(quoteSection);
+});
 
 // =======================
 // GLOBAL INTERSECTION OBSERVER (REPEATABLE)
