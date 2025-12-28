@@ -145,7 +145,7 @@ function updateLanguage() {
   });
   authorEl.textContent = translations[currentLang].quote_author;
   quoteTyped = false;
-  typeQuote(getRandomQuote());
+  // typeQuote(getRandomQuote());
 
 }
 
@@ -212,47 +212,57 @@ function getRandomQuote() {
   return list[Math.floor(Math.random() * list.length)];
 }
 
-/// =======================
-// QUOTE — TYPE ONLY AFTER USER SCROLLS INTO VIEW
+//// =======================
+// QUOTE — TYPE ONLY WHEN SCROLLED INTO VIEW
 // =======================
 document.addEventListener("DOMContentLoaded", () => {
   const quoteSection = document.querySelector(".quote");
   if (!quoteSection) return;
 
   let hasTyped = false;
+  let typingTimer = null;
   let userHasScrolled = false;
 
-  // detect real user scroll
-  window.addEventListener("scroll", () => {
-    userHasScrolled = true;
-  }, { once: true });
+  // detect real user scroll (not refresh)
+  window.addEventListener(
+    "scroll",
+    () => {
+      userHasScrolled = true;
+    },
+    { once: true }
+  );
 
   const quoteObserver = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
-        // 🚨 STRICT CONDITIONS
+        // ✅ START typing
         if (
           entry.isIntersecting &&
-          userHasScrolled &&   // 🔑 must scroll first
+          userHasScrolled &&
           !hasTyped
         ) {
           hasTyped = true;
           typeQuote(getRandomQuote());
         }
 
-        // reset when leaving viewport
-        if (!entry.isIntersecting) {
+        // ✅ RESET cleanly when leaving
+        if (!entry.isIntersecting && hasTyped) {
           hasTyped = false;
+          clearInterval(typingTimer);
+          quoteEl.textContent = "";
+          cursorEl.style.display = "none";
+          authorEl.classList.remove("show");
         }
       });
     },
     {
-      threshold: 0.65 // only when clearly inside view
+      threshold: 0.6
     }
   );
 
   quoteObserver.observe(quoteSection);
 });
+
 
 // =======================
 // GLOBAL INTERSECTION OBSERVER (REPEATABLE)
