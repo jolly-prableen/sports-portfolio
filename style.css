@@ -1098,3 +1098,108 @@ body.dark .author {
     top: -40px;
   }
 }
+/* ================= SOCIAL CONNECT – CLEAN ================= */
+
+.social {
+  padding: 120px 0;
+}
+
+.social-container {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.social-links {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #111;
+  position: relative;
+  padding-bottom: 6px;
+  transition: opacity 0.25s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: socialFadeUp 0.6s ease forwards;
+}
+.social-links a:nth-child(1) { animation-delay: 0.1s; }
+.social-links a:nth-child(2) { animation-delay: 0.25s; }
+.social-links a:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes socialFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* underline animation */
+.social-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: #111;
+  transition: width 0.3s ease;
+}
+.social-links a:hover {
+  opacity: 1;
+  letter-spacing: 0.6px;
+}
+
+.social-links a:hover::after {
+  width: 100%;
+}
+/* Center underline for Connect section */
+.social .section-title::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.social-links a:hover {
+  opacity: 0.85;
+}
+
+/* dark mode */
+body.dark .social-links a {
+  color: #fff;
+}
+
+body.dark .social-links a::after {
+  background: #fff;
+}
+
+/* mobile */
+@media (max-width: 600px) {
+  .social-links {
+    gap: 28px;
+  }
+}
+/* ================= SOCIAL ICONS – SUBTLE ================= */
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-links a i {
+  font-size: 16px;
+  opacity: 0.8;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-links a:hover i {
+  transform: translateY(-2px);
+  opacity: 1;
+}
+

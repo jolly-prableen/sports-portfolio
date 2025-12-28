@@ -82,6 +82,11 @@ const translations = {
     tl_2023: "World Cup milestones & legacy",
     tl_desc_2023: "Finished as the highest run-scorer of the tournament.",
 
+    connect_title: "Connect",
+    social_instagram: "Instagram",
+    social_twitter: "Twitter",
+    social_facebook: "Facebook",
+
     quote_text: "Self-belief and hard work will always earn you success.",
     quote_author: "— Virat Kohli"
   },
@@ -130,6 +135,11 @@ const translations = {
     tl_desc_2017: "फिटनेस और आक्रामक संस्कृति को बदला।",
     tl_2023: "विश्व कप विरासत",
     tl_desc_2023: "टूर्नामेंट में सर्वाधिक रन बनाए।",
+
+    connect_title: "संपर्क करें", 
+    social_instagram: "इंस्टाग्राम",
+    social_twitter: "ट्विटर",
+    social_facebook: "फेसबुक",
 
     quote_text: "खुद पर विश्वास और कड़ी मेहनत हमेशा सफलता दिलाती है।",
     quote_author: "— विराट कोहली"
